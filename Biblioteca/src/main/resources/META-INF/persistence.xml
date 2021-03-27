@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="org.especialistajee.proyint_jbib-comun_jar_1.0-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>org.especialistajee.jbib.model.Libro</class>
+    <class>org.especialistajee.jbib.model.Multa</class>
+    <class>org.especialistajee.jbib.model.Usuario</class>
+    <class>org.especialistajee.jbib.model.Operacion</class>
+    <class>org.especialistajee.jbib.model.Alumno</class>
+    <class>org.especialistajee.jbib.model.profesor</class>
+    <class>org.especialistajee.jbib.model.Bibliotecario</class>
+    <class>org.especialistajee.jbib.model.EjemplarDomain</class>
+    <class>org.especialistajee.jbib.model.LibroDomain</class>
+    <class>org.especialistajee.jbib.model.PrestamoHistoricoDomain</class>
+    <class>org.especialistajee.jbib.model.ReservaDomain</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/biblioteca"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value=""/>
+    </properties>
+  </persistence-unit>
+</persistence>

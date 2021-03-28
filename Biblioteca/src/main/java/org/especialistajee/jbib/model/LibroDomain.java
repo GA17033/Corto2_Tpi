@@ -7,22 +7,24 @@ package org.especialistajee.jbib.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import org.apache.commons.logging.Log;
+
+import org.apache.commons.logging.LogFactory;
 
 /**
  *
  * @author FUJITSU
  */
-@Entity
-public class LibroDomain implements Serializable {
+public class LibroDomain extends DomainObject {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Log logger = (Log) LogFactory.getLog(LibroDomain.class);
     private String isbn;
     private String titulo;
     private String autor;
@@ -30,12 +32,21 @@ public class LibroDomain implements Serializable {
     private Date fechaAlta;
     private Integer numDisponibles;
 
-    public Long getId() {
-        return id;
+    private Set<EjemplarDomain> ejemplares = new HashSet<EjemplarDomain>();
+    private Set<ReservaDomain> reservas = new HashSet<ReservaDomain>();
+
+    public LibroDomain(String isbn) {
+        this.isbn = isbn;
+        logger.debug("Creada una instancia de " + LibroDomain.class.getName());
+
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Log getLogger() {
+        return logger;
+    }
+
+    public void setLogger(Log logger) {
+        this.logger = logger;
     }
 
     public String getIsbn() {
@@ -85,31 +96,53 @@ public class LibroDomain implements Serializable {
     public void setNumDisponibles(Integer numDisponibles) {
         this.numDisponibles = numDisponibles;
     }
-    
+
+    public Set<EjemplarDomain> getEjemplares() {
+        return ejemplares;
+    }
+
+
+    public void setEjemplares(Set<EjemplarDomain> ejemplares) {
+        this.ejemplares = ejemplares;
+    }
+
+    public Set<ReservaDomain> getReservas() {
+        return reservas;
+    }
+
+    public void setReservas(Set<ReservaDomain> reservas) {
+        this.reservas = reservas;
+    }
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((isbn == null) ? 0 : isbn.hashCode());
+        return result;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof LibroDomain)) {
+        if (this == object) {
+            return true;
+        }
+        if (object == null) {
+            return false;
+        }
+        if (getClass() != object.getClass()) {
             return false;
         }
         LibroDomain other = (LibroDomain) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (isbn == null) {
+            return false;
+        } else if (!isbn.equals(other.isbn)) {
             return false;
         }
         return true;
-    }
 
-    @Override
-    public String toString() {
-        return "org.especialistajee.jbib.model.LibroDomain[ id=" + id + " ]";
     }
 
 }
+

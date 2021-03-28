@@ -5,7 +5,10 @@
  */
 package org.especialistajee.jbi;
 
-import org.especialistajee.jbib.model.TipoUsuario;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.especialistajee.jbib.model.AlumnoDomain;
+import org.especialistajee.jbib.model.UsuarioDomain;
 
 /**
  *
@@ -13,9 +16,16 @@ import org.especialistajee.jbib.model.TipoUsuario;
  */
 public class BibliotecaBR {
 
+    private int numDiasPrestamoAlumno = 7;
+    private int numDiasPrestamoProfesor = 30;
+    private int cupoOperacionesAlumno = 5;
+    private int cupoOperacionesProfesor = 8;
+    private static Log logger = LogFactory.getLog(BibliotecaBR.class);
+
     private static BibliotecaBR me = new BibliotecaBR();
 
     private BibliotecaBR() {
+        logger.debug("creada instancia de " + BibliotecaBR.class);
     }
 
     public static BibliotecaBR getInstance() {
@@ -30,14 +40,25 @@ public class BibliotecaBR {
      * @return número de dias de reserva
      * @throws BibliotecaException el tipo del usuario no es válido
      */
-    public int calculaNumDiasReserva(TipoUsuario tipo)
+    public int calculaNumDiasReserva(UsuarioDomain usuario)
             throws BibliotecaException {
-// TODO Completar
+
+        if (usuario instanceof AlumnoDomain) {
+
+            return numDiasPrestamoAlumno;
+        } else if (usuario instanceof ProfesorDomain) {
+            return numDiasPrestamoProfesor;
+        } else {
+            String msg = "solo los alumnos y profesores pueden";
+            logger.error(msg);
+            throw new BibliotecaException(msg);
+
+        }
     }
 
     /**
      * Calcula el número de dias de plazo que tienen un usuario para realizar un
-     * prestamo (Socio = 7 , Profesor = 30)
+     * prestamo (Alumno = 7 , Profesor = 30)
      *
      * @param tipo tipo del usuario
      * @return número de dias del prestamo
@@ -45,7 +66,7 @@ public class BibliotecaBR {
      */
     public int calculaNumDiasPrestamo(TipoUsuario tipo)
             throws BibliotecaException {
-// TODO Completar
+
     }
 
     /**

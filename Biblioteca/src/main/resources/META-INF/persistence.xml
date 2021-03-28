@@ -9,10 +9,14 @@
     <class>org.especialistajee.jbib.model.Alumno</class>
     <class>org.especialistajee.jbib.model.profesor</class>
     <class>org.especialistajee.jbib.model.Bibliotecario</class>
-    <class>org.especialistajee.jbib.model.EjemplarDomain</class>
     <class>org.especialistajee.jbib.model.LibroDomain</class>
     <class>org.especialistajee.jbib.model.PrestamoHistoricoDomain</class>
     <class>org.especialistajee.jbib.model.ReservaDomain</class>
+    <class>org.especialistajee.jbib.model.MultaDomain</class>
+    <class>org.especialistajee.jbib.model.UsuarioDomain</class>
+    <class>org.especialistajee.jbib.model.profesorDomain</class>
+    <class>org.especialistajee.jbib.model.AlumnoDomain</class>
+    <class>org.especialistajee.jbib.model.BibliotecarioDomain</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/biblioteca"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
